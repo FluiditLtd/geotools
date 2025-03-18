@@ -417,8 +417,8 @@ public class GridCoverageRendererTest {
     @Test
     public void testInterpolationBicubic() throws Exception {
         CoordinateReferenceSystem googleMercator = CRS.decode("EPSG:3857");
-        ReferencedEnvelope mapExtent =
-                new ReferencedEnvelope(-20037508.34, 20037508.34, -20037508.34, 20037508.34, googleMercator);
+        ReferencedEnvelope mapExtent = new ReferencedEnvelope(
+                -3737464.935032, 5615981.342168, 3629841.599206, 12357115.740695, googleMercator);
         Rectangle screenSize = new Rectangle(200, (int) (mapExtent.getHeight() / mapExtent.getWidth() * 200));
         AffineTransform w2s = RendererUtilities.worldToScreenTransform(mapExtent, screenSize);
         GridCoverageRenderer renderer = new GridCoverageRenderer(googleMercator, mapExtent, screenSize, w2s);
@@ -432,8 +432,8 @@ public class GridCoverageRendererTest {
                 Color.RED,
                 256,
                 256);
-        File reference =
-                new File("src/test/resources/org/geotools/renderer/lite/gridcoverage2d/googleMercatorBicubic.png");
+        File reference = new File(
+                "src/test/resources/org/geotools/renderer/lite/gridcoverage2d/googleMercatorBicubicEurope.png");
         ImageAssert.assertEquals(reference, image, 0);
     }
 

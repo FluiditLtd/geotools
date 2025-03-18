@@ -517,8 +517,10 @@ public final class GridCoverageRenderer {
         try {
             GridGeometry2D gg = inputCoverage.getGridGeometry();
             MathTransform crs2Grid = gg.getCRSToGrid2D();
-            Rectangle rasterSpaceEnvelope =
-                    CRS.transform(crs2Grid, destinationEnvelope).toRectangle2D().getBounds();
+            Rectangle rasterSpaceEnvelope = CRS.transform(
+                            crs2Grid, CRS.transform(destinationEnvelope, inputCoverage.getCoordinateReferenceSystem()))
+                    .toRectangle2D()
+                    .getBounds();
             GridEnvelope2D gridRange = new GridEnvelope2D(rasterSpaceEnvelope);
             int padding = Math.max(interpolation.getHeight(), interpolation.getWidth()) + 1;
             gridRange.setBounds(
